@@ -368,7 +368,13 @@
 	 NB: this line, by changing the FRAME of the layer, has the side effect of also changing the CGPATH's position in absolute
 	 space! This is why we needed the "CGPathRef finalPath =" line a few lines above...
 	 */
-	_shapeLayer.frame = transformedPathBB;
+    @try {
+        _shapeLayer.frame = transformedPathBB;
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
 	
 	CGRect localRect =  CGRectMake(0, 0, CGRectGetWidth(transformedPathBB), CGRectGetHeight(transformedPathBB));
 
