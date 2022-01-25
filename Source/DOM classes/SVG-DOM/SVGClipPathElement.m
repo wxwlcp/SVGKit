@@ -71,13 +71,25 @@
         // TODO what to do when mainRect is null rect? i.e. no sublayer or all sublayers have null rect frame
     } else {
         for (CALayer *currentLayer in [layer sublayers])
-            currentLayer.frame = CGRectOffset(currentLayer.frame, -mainRect.origin.x, -mainRect.origin.y);
+            @try {
+                currentLayer.frame = CGRectOffset(currentLayer.frame, -mainRect.origin.x, -mainRect.origin.y);
+            } @catch (NSException *exception) {
+                
+            } @finally {
+                
+            }
     }
     
     // unless we're working in bounding box coords, subtract the owning layer's origin
     if( self.clipPathUnits == SVG_UNIT_TYPE_USERSPACEONUSE )
         mainRect = CGRectOffset(mainRect, -maskThis.frame.origin.x, -maskThis.frame.origin.y);
-    layer.frame = mainRect;
+    @try {
+        layer.frame = mainRect;
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
 }
 
 @end

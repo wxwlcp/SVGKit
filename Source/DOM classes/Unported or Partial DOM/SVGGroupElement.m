@@ -53,8 +53,14 @@
 		CGRect subLayerFrame = currentLayer.frame;
 		mainRect = CGRectUnion(mainRect, subLayerFrame);
 	}
+    @try {
+        layer.frame = mainRect;
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
 	
-	layer.frame = mainRect;
 	
 	/** Adam:(dont know why this is here): set each sublayer to have a frame the same size as the parent frame, but with 0 offset.
 	 
@@ -70,8 +76,14 @@
 		CGRect frame = currentLayer.frame;
 		frame.origin.x -= mainRect.origin.x;
 		frame.origin.y -= mainRect.origin.y;
+        @try {
+            currentLayer.frame = frame;
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
 		
-		currentLayer.frame = frame;
 	}
 }
 

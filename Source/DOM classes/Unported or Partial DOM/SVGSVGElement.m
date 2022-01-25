@@ -255,8 +255,13 @@
 	
 	/** <SVG> tags know exactly what size/shape their layer needs to be - it's explicit in their width + height attributes! */
 	CGRect newBoundsFromSVGTag = CGRectFromSVGRect( self.viewport );
-	_layer.frame = newBoundsFromSVGTag; // assign to FRAME, not to BOUNDS: Apple has some weird bugs where for particular numeric values (!) assignment to bounds will cause the origin to jump away from (0,0)!
-	
+    @try {
+        _layer.frame = newBoundsFromSVGTag; // assign to FRAME, not to BOUNDS: Apple has some weird bugs where for particular numeric values (!) assignment to bounds will cause the origin to jump away from (0,0)!
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
 	return _layer;
 }
 

@@ -33,8 +33,14 @@
     SVGGradientLayer *gradientLayer = [[SVGGradientLayer alloc] init];
     BOOL inUserSpace = self.gradientUnits == SVG_UNIT_TYPE_USERSPACEONUSE;
     CGRect rectForRelativeUnits = inUserSpace ? CGRectFromSVGRect( viewportRect ) : objectRect;
+    @try {
+        gradientLayer.frame = objectRect;
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
     
-    gradientLayer.frame = objectRect;
     
     NSString *cxAttr = [self getAttributeInheritedIfNil:@"cx"];
     NSString *cyAttr = [self getAttributeInheritedIfNil:@"cy"];

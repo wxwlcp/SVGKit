@@ -28,7 +28,14 @@
     BOOL inUserSpace = self.gradientUnits == SVG_UNIT_TYPE_USERSPACEONUSE;
     CGRect rectForRelativeUnits = inUserSpace ? CGRectFromSVGRect( viewportRect ) : objectRect;
     
-    gradientLayer.frame = objectRect;
+    @try {
+        gradientLayer.frame = objectRect;
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
+    
     
     NSString *attrX1 = [self getAttributeInheritedIfNil:@"x1"];
     NSString *attrY1 = [self getAttributeInheritedIfNil:@"y1"];

@@ -42,7 +42,13 @@
 	 i.e. top-left-corner of this layer will be "the top left corner of the convex-hull rect of all sublayers"
 	 AND: bottom-right-corner of this layer will be "the bottom-right corner of the convex-hull rect of all sublayers"
 	 */
-	layer.frame = mainRect;
+        @try {
+            layer.frame = mainRect;
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
     
     /**
      If this group layer has a mask then since we've adjusted this layer's frame we need to offset the mask's frame by the opposite amount.
@@ -63,7 +69,13 @@
             CGRect frame = currentLayer.frame;
             frame.origin.x -= mainRect.origin.x;
             frame.origin.y -= mainRect.origin.y;
-            currentLayer.frame = frame;
+            @try {
+                currentLayer.frame = frame;
+            } @catch (NSException *exception) {
+                
+            } @finally {
+                
+            }
         }
     }
 }

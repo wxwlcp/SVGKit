@@ -172,7 +172,13 @@ CGImageRef SVGImageCGImage(UIImage *img)
         
         /** transform our LOCAL path into ABSOLUTE space */
         frame = CGRectApplyAffineTransform(frame, [SVGHelperUtilities transformAbsoluteIncludingViewportForTransformableOrViewportEstablishingElement:self]);
-        newLayer.frame = frame;
+        @try {
+            newLayer.frame = frame;
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
         
         newLayer.contents = (__bridge id)imageRef;
         if( imageRefHasBeenRetained )

@@ -454,7 +454,13 @@
 		{
 			// need a new fill layer because the stroke layer is becoming a mask
 			fillLayer = [CAShapeLayerWithHitTest layer];
-			fillLayer.frame = strokeLayer.frame;
+            @try {
+                fillLayer.frame = strokeLayer.frame;
+            } @catch (NSException *exception) {
+                
+            } @finally {
+                
+            }
 			fillLayer.opacity = strokeLayer.opacity;
 			fillLayer.path = strokeLayer.path;
 			
@@ -471,7 +477,13 @@
                 SVGGradientLayer *gradientLayer = [self getGradientLayerWithId:strokeId forElement:svgElement withRect:boundingBox transform:transformAbsolute];
                 
                 if (gradientLayer) {
-                    strokeLayer.frame = localRect;
+                    @try {
+                        strokeLayer.frame = localRect;
+                    } @catch (NSException *exception) {
+                        
+                    } @finally {
+                        
+                    }
                     
                     strokeLayer.fillColor = nil;
                     strokeLayer.strokeColor = [UIColor blackColor].CGColor;
@@ -516,12 +528,24 @@
 										   transform:transformAbsolute];
         if (gradientLayer) {
             CAShapeLayer* maskLayer = [CAShapeLayer layer];
-            maskLayer.frame = localRect;
+            @try {
+                maskLayer.frame = localRect;
+            } @catch (NSException *exception) {
+                
+            } @finally {
+                
+            }
             maskLayer.path = fillLayer.path;
             maskLayer.fillColor = [UIColor blackColor].CGColor;
             maskLayer.strokeColor = nil;
             gradientLayer.mask = maskLayer;
-            gradientLayer.frame = fillLayer.frame;
+            @try {
+                gradientLayer.frame = fillLayer.frame;
+            } @catch (NSException *exception) {
+                
+            } @finally {
+                
+            }
             fillLayer = (CAShapeLayer* )gradientLayer;
         } else {
             // no gradient, fallback
@@ -543,10 +567,23 @@
 	CALayer* combined = [CALayer layer];
 	
 	combined.frame = strokeLayer.frame;
-	strokeLayer.frame = localRect;
+    @try {
+        strokeLayer.frame = localRect;
+    } @catch (NSException *exception) {
+        
+    } @finally {
+    
+    }
+	
 	if ([strokeLayer isKindOfClass:[CAShapeLayer class]])
 		strokeLayer.fillColor = nil;
-	fillLayer.frame = localRect;
+    @try {
+        fillLayer.frame = localRect;
+    } @catch (NSException *exception) {
+        
+    } @finally {
+    
+    }
 	[combined addSublayer:fillLayer];
 	[combined addSublayer:strokeLayer];
 	return combined;
