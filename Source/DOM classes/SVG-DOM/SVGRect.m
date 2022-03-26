@@ -3,7 +3,7 @@
 
 BOOL SVGRectIsInitialized( SVGRect rect )
 {
-	return rect.x != -1 || rect.y != -1 || rect.width != -1 || rect.height != -1;
+    return rect.x > 0 || rect.y > 0 || rect.width > 0 || rect.height > 0;
 }
 
 SVGRect SVGRectUninitialized( void )
